@@ -1,26 +1,230 @@
 @import "tailwindcss";
 
+/* ─── INFRAZEN DESIGN SYSTEM (ENGINEERING SPECIFICATION) ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Exact Client Palette */
+  --bg-main: #F7F5F0;
+  --bg-alt: #E9E6DF;
+  --bg-card: #FFFFFF;
+
+  --primary-navy: #0F2A47;
+  --secondary-steel: #2F6690;
+  --accent-orange: #F26A1B; /* Fills and lines only! Never as text on light backgrounds */
+  --text-body: #3A4654;
+  --border-color: #CFCBC2;
+
+  /* Aliases mapped strictly to new palette */
+  --cream: #F7F5F0;
+  --cream-alt: #E9E6DF;
+  --white: #FFFFFF;
+  --heading: #0F2A47;
+  --slate: #3A4654;
+  --hairline: #CFCBC2;
+  --hairline-strong: #B8B3A8;
+
+  /* All legacy color tokens redirected to Navy / Steel Blue / Safety Orange */
+  --violet: #0F2A47;
+  --violet-hover: #163B61;
+  --cyan: #2F6690;
+  --amber: #F26A1B;
+  --magenta: #2F6690;
+  --teal: #2F6690;
+
+  /* Typography */
+  --font-heading: var(--font-archivo, "Archivo", ui-sans-serif, sans-serif);
+  --font-body: var(--font-public-sans, "Public Sans", ui-sans-serif, sans-serif);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-main: var(--bg-main);
+  --color-alt: var(--bg-alt);
+  --color-card: var(--bg-card);
+  --color-navy: var(--primary-navy);
+  --color-steel: var(--secondary-steel);
+  --color-orange: var(--accent-orange);
+  --color-body: var(--text-body);
+  --color-border: var(--border-color);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── BASE RESET ─────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+  background-color: var(--bg-main);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── ARCHITECTURAL GRID OVERLAY ────────────────────────── */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(15, 42, 71, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 42, 71, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+/* ─── BUTTONS ────────────────────────────────────────────── */
+/* Primary Navy Button with Crisp White Text */
+.btn-violet,
+.btn-navy {
+  background-color: var(--primary-navy);
+  color: #FFFFFF;
+  border-radius: 2px;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--primary-navy);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(15, 42, 71, 0.16);
+}
+
+.btn-violet:hover,
+.btn-navy:hover {
+  background-color: var(--secondary-steel);
+  border-color: var(--secondary-steel);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* Safety Orange Button (Fill Only with Pure White Text) */
+.btn-orange {
+  background-color: var(--accent-orange);
+  color: #FFFFFF;
+  border-radius: 2px;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--accent-orange);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-orange:hover {
+  background-color: #D9560E;
+  border-color: #D9560E;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* Outline Button */
+.btn-outline {
+  background-color: #FFFFFF;
+  color: var(--primary-navy);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: var(--secondary-steel);
+  color: var(--secondary-steel);
+  background-color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* ─── ARCHITECTURAL CARDS ────────────────────────────────── */
+.card-light {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(15, 42, 71, 0.04);
+  transition: all 0.25s ease;
+}
+
+.card-light:hover {
+  border-color: var(--secondary-steel);
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+.heading-expanded {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--primary-navy);
+}
+
+.accent-serif {
+  font-family: var(--font-heading);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--secondary-steel);
+}
+
+.section-number {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  color: var(--primary-navy);
+}
+
+.dim-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--secondary-steel);
+  font-weight: 600;
+}
+
+.coord-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--text-body);
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+/* Engineering Accent Rules (Orange & Navy fills/lines) */
+.violet-rule,
+.navy-rule {
+  height: 2px;
+  background-color: var(--primary-navy);
+  width: 2.75rem;
+}
+
+.orange-rule {
+  height: 2px;
+  background-color: var(--accent-orange);
+  width: 2.75rem;
 }
