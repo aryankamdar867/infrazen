@@ -11,9 +11,32 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Honor reduced motion accessibility preference
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
+    // Completely disable Lenis on mobile/touch screens and for users preferring reduced motion.
+    // Native mobile touch momentum scrolling (iOS/Android inertial scrolling) is 120Hz hardware composited.
+    const isTouch =
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.innerWidth < 1024 ||
+      (typeof navigator !== "undefined" && navigator.maxTouchPoints > 1);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (isTouch || prefersReducedMotion) {
+      // Use lightweight native smooth scrolling for internal anchor links on mobile
+      const handleAnchorClick = (e: MouseEvent) => {
+        const target = (e.target as HTMLElement).closest("a");
+        if (!target) return;
+        const href = target.getAttribute("href");
+        if (href && href.startsWith("#") && href.length > 1) {
+          const elem = document.querySelector(href);
+          if (elem) {
+            e.preventDefault();
+            const top = elem.getBoundingClientRect().top + window.pageYOffset - 72;
+            window.scrollTo({ top, behavior: "smooth" });
+          }
+        }
+      };
+
+      document.addEventListener("click", handleAnchorClick);
+      return () => document.removeEventListener("click", handleAnchorClick);
     }
 
     gsap.registerPlugin(ScrollTrigger);
@@ -25,7 +48,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.6,
+      touchMultiplier: 0, // Never hijack native touch
     });
 
     lenisRef.current = lenis;
@@ -40,7 +63,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
-    // Handle internal hash anchor navigation with smooth scrolling
+    // Handle internal hash anchor navigation with smooth scrolling on desktop
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
       if (!target) return;

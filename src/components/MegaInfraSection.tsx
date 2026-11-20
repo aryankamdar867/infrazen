@@ -59,18 +59,27 @@ export default function MegaInfraSection() {
   const { setBridgeProgress } = useWorldScene();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowH = window.innerHeight;
-      const totalDist = rect.height - windowH;
-      if (totalDist <= 0) return;
-      const prog = Math.min(1, Math.max(0, -rect.top / totalDist));
-      setScrollProgress(prog);
-      setBridgeProgress(Math.max(0.2, prog));
-      if (prog < 0.33) setActiveStep(1);
-      else if (prog < 0.66) setActiveStep(2);
-      else setActiveStep(3);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const windowH = window.innerHeight;
+            const totalDist = rect.height - windowH;
+            if (totalDist > 0) {
+              const prog = Math.min(1, Math.max(0, -rect.top / totalDist));
+              setScrollProgress(prog);
+              setBridgeProgress(Math.max(0.2, prog));
+              if (prog < 0.33) setActiveStep(1);
+              else if (prog < 0.66) setActiveStep(2);
+              else setActiveStep(3);
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);

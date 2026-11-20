@@ -617,16 +617,39 @@ function SceneContents({
 export default function WorldScene3D() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [bridgeProgress, setBridgeProgress] = useState(1);
-  const mobile = useMemo(() => (typeof window !== "undefined" ? isMobile() : false), []);
+  const [isMobileDevice, setIsMobileDevice] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    const checkMobile = () => {
+      const isMob =
+        window.innerWidth < 768 ||
+        window.matchMedia("(pointer: coarse)").matches ||
+        (typeof navigator !== "undefined" && navigator.maxTouchPoints > 1);
+      setIsMobileDevice(isMob);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobileDevice) return;
+    let ticking = false;
     const handleScroll = () => {
-      const max = document.body.scrollHeight - window.innerHeight;
-      if (max > 0) setScrollProgress(window.scrollY / max);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const max = document.body.scrollHeight - window.innerHeight;
+          if (max > 0) setScrollProgress(window.scrollY / max);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobileDevice]);
 
   return (
     <WorldSceneContext.Provider value={{ scrollProgress, bridgeProgress, setBridgeProgress }}>
@@ -637,23 +660,40 @@ export default function WorldScene3D() {
           inset: 0,
           zIndex: 0,
           pointerEvents: "none",
+          background:
+            "linear-gradient(180deg, #4A7E9F 0%, #73A5C5 25%, #A8C8DE 45%, #D4E3ED 65%, #E9E6DF 85%, #F7F5F0 100%)",
         }}
       >
-        <Canvas
-          camera={{ position: [2, 14, 22], fov: 46, near: 0.1, far: 250 }}
-          dpr={Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 1.75)}
-          gl={{
-            antialias: true,
-            alpha: true,
-            powerPreference: "high-performance",
+        {/* Subtle architectural grid pattern */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(to right, rgba(15, 42, 71, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 42, 71, 0.03) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+            opacity: 0.7,
           }}
-        >
-          <SceneContents
-            scrollProgress={scrollProgress}
-            bridgeProgress={bridgeProgress}
-            mobile={mobile}
-          />
-        </Canvas>
+        />
+
+        {/* Mount WebGL Canvas ONLY on desktop devices with fine pointer */}
+        {isMounted && !isMobileDevice && (
+          <Canvas
+            camera={{ position: [2, 14, 22], fov: 46, near: 0.1, far: 250 }}
+            dpr={Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 1.75)}
+            gl={{
+              antialias: true,
+              alpha: true,
+              powerPreference: "high-performance",
+            }}
+          >
+            <SceneContents
+              scrollProgress={scrollProgress}
+              bridgeProgress={bridgeProgress}
+              mobile={false}
+            />
+          </Canvas>
+        )}
       </div>
     </WorldSceneContext.Provider>
   );

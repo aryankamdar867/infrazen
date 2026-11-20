@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/content/site";
 
@@ -34,19 +34,26 @@ function IconPhone() {
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const lastScrollYRef = useRef(0);
+  const tickingRef = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      setIsScrolled(y > 50);
-      setIsVisible(y < lastScrollY || y < 100);
-      setLastScrollY(y);
+      if (!tickingRef.current) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY;
+          setIsScrolled(y > 50);
+          setIsVisible(y < lastScrollYRef.current || y < 100);
+          lastScrollYRef.current = y;
+          tickingRef.current = false;
+        });
+        tickingRef.current = true;
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [lastScrollY]);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";

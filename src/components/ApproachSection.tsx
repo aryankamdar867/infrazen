@@ -54,18 +54,26 @@ export default function ApproachSection() {
   const [lineProgress, setLineProgress] = useState(0.25);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowH = window.innerHeight;
-      const totalDist = rect.height;
-      const curr = windowH - rect.top;
-      const prog = Math.min(1, Math.max(0.1, curr / totalDist));
-      setLineProgress(prog);
-      if (prog < 0.35) setActivePhase(1);
-      else if (prog < 0.6) setActivePhase(2);
-      else if (prog < 0.85) setActivePhase(3);
-      else setActivePhase(4);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const windowH = window.innerHeight;
+            const totalDist = rect.height;
+            const curr = windowH - rect.top;
+            const prog = Math.min(1, Math.max(0.1, curr / totalDist));
+            setLineProgress(prog);
+            if (prog < 0.35) setActivePhase(1);
+            else if (prog < 0.6) setActivePhase(2);
+            else if (prog < 0.85) setActivePhase(3);
+            else setActivePhase(4);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
