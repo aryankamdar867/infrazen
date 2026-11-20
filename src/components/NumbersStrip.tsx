@@ -158,12 +158,12 @@ export default function NumbersStrip() {
             gap: "1.5rem",
           }}
         >
-          <div className="dim-label" style={{ flexShrink: 0 }}>YoY Revenue Trajectory</div>
+          <div className="dim-label" style={{ flexShrink: 0 }}>YoY Growth Trajectory</div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
             {[
               { label: "FY 24–25 Delivered", val: "₹12 Cr", accent: false },
-              { label: "FY 25–26 Projected", val: "₹20 Cr", accent: true },
-              { label: "Order Book", val: "₹50 Cr+", accent: false },
+              { label: "FY 25–26", val: "₹20 Cr", accent: true },
+              { label: "Order Book", val: "₹100 Cr+", accent: false },
             ].map((s, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                 <div

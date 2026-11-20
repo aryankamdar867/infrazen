@@ -192,7 +192,7 @@ export default function HeroSection() {
                     lineHeight: 1,
                   }}
                 >
-                  ₹50 Cr+
+                  ₹100 Cr+
                 </div>
               </div>
             </div>

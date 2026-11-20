@@ -242,7 +242,7 @@ export const siteConfig: SiteConfig = {
       whatsappDisplay: "+91 98220 00000",
       whatsappNumber: "919822000000",
       whatsappMessage: "Hello Infrazen Mega Projects, I would like to enquire regarding an infrastructure / EPC project.",
-      email: "info@infrazen.co.in",
+      email: "office@infrazenprojects.com",
       formspreeEndpoint: "https://formspree.io/f/xbjnerkp",
     },
     social: {
@@ -275,7 +275,6 @@ export const siteConfig: SiteConfig = {
     { label: "Liaisoning", href: "#liaisoning" },
     { label: "Approach", href: "#approach" },
     { label: "Why Infrazen", href: "#why-us" },
-    { label: "Compliance", href: "#compliance" },
     { label: "Contact", href: "#contact" },
   ],
 
@@ -302,7 +301,7 @@ export const siteConfig: SiteConfig = {
         number: 12,
         prefix: "₹",
         suffix: " Cr+",
-        label: "FY 2024–25 Revenue",
+        label: "FY 2024–25",
         sub: "Delivered in 1 Year — a strong market entry.",
       },
       {
@@ -310,16 +309,16 @@ export const siteConfig: SiteConfig = {
         number: 20,
         prefix: "₹",
         suffix: " Cr+",
-        label: "FY 2025–26 Projected",
-        sub: "Over 65% year-on-year growth projected for upcoming fiscal year.",
+        label: "FY 2025–26",
+        sub: "Over 65% year-on-year growth for upcoming fiscal year.",
       },
       {
         id: "order-book",
-        number: 50,
+        number: 100,
         prefix: "₹",
         suffix: " Cr+",
         label: "Current Order Book",
-        sub: "Strong revenue visibility with high-value contracts in hand.",
+        sub: "Strong business visibility with high-value contracts in hand.",
       },
       {
         id: "experience",

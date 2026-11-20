@@ -82,13 +82,9 @@ export default function Footer() {
                   className="h-14 sm:h-16"
                 />
               </Link>
-              <div className="flex items-center gap-2">
+              <div>
                 <span className="text-[11px] font-mono block font-semibold" style={{ color: STEEL }}>
                   CIN: U41001PN2024PTC233435
-                </span>
-                <span style={{ color: "var(--border-color)" }}>•</span>
-                <span className="text-[11px] font-mono block" style={{ color: "var(--text-body)", opacity: 0.8 }}>
-                  RoC Pune, Maharashtra
                 </span>
               </div>
             </div>
@@ -161,7 +157,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Statutory Credentials (4 cols) */}
+          {/* Key Practice Areas (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <h4
               style={{
@@ -174,7 +170,7 @@ export default function Footer() {
                 marginBottom: "1rem",
               }}
             >
-              Statutory Credentials
+              Key Sectors
             </h4>
             <div
               style={{
@@ -183,23 +179,23 @@ export default function Footer() {
                 padding: "1rem 1.25rem",
                 borderRadius: "2px",
               }}
-              className="space-y-2 text-xs font-mono"
+              className="space-y-2 text-xs"
             >
-              <div className="flex justify-between">
-                <span style={{ color: "var(--text-body)" }}>GSTIN:</span>
-                <span style={{ color: NAVY, fontWeight: 600 }}>27AAHCI8006L1ZA</span>
+              <div className="flex items-center gap-2" style={{ color: "var(--text-body)" }}>
+                <span style={{ color: "var(--accent-orange)", fontWeight: 700 }}>■</span>
+                <span>Mega Infrastructure & Highways</span>
               </div>
-              <div className="flex justify-between">
-                <span style={{ color: "var(--text-body)" }}>PAN:</span>
-                <span style={{ color: NAVY, fontWeight: 600 }}>AAHCI8006L</span>
+              <div className="flex items-center gap-2" style={{ color: "var(--text-body)" }}>
+                <span style={{ color: "var(--accent-orange)", fontWeight: 700 }}>■</span>
+                <span>Turnkey Healthcare & Hospital EPC</span>
               </div>
-              <div className="flex justify-between">
-                <span style={{ color: "var(--text-body)" }}>TAN:</span>
-                <span style={{ color: NAVY, fontWeight: 600 }}>PNEI12999A</span>
+              <div className="flex items-center gap-2" style={{ color: "var(--text-body)" }}>
+                <span style={{ color: "var(--accent-orange)", fontWeight: 700 }}>■</span>
+                <span>Government Liaisoning & Clearances</span>
               </div>
-              <div className="flex justify-between">
-                <span style={{ color: "var(--text-body)" }}>ESIC / EPFO:</span>
-                <span style={{ color: STEEL, fontWeight: 700 }}>Fully Active</span>
+              <div className="flex items-center gap-2" style={{ color: "var(--text-body)" }}>
+                <span style={{ color: "var(--accent-orange)", fontWeight: 700 }}>■</span>
+                <span>Construction Management & Advisory</span>
               </div>
             </div>
 
@@ -207,7 +203,7 @@ export default function Footer() {
               <span style={{ color: STEEL }}>
                 <IconShieldCheck size={14} />
               </span>
-              <span>Ministry of Corporate Affairs, Govt. of India</span>
+              <span>Delivered from Pune across India</span>
             </div>
           </div>
         </div>

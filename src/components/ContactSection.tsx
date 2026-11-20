@@ -111,7 +111,7 @@ export default function ContactSection() {
         {/* Section Header */}
         <div className="mb-14 sm:mb-20">
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
-            <span className="section-number">11</span>
+            <span className="section-number">10</span>
             <span className="dim-label" style={{ color: STEEL }}>/ Contact</span>
           </div>
           <div className="orange-rule" style={{ marginBottom: "1.25rem" }} />

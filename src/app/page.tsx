@@ -11,7 +11,6 @@ import HealthcareEPCSection from "@/components/HealthcareEPCSection";
 import GovernmentLiaisoningSection from "@/components/GovernmentLiaisoningSection";
 import ApproachSection from "@/components/ApproachSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
-import ComplianceSection from "@/components/ComplianceSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import PlaceholderNotice from "@/components/PlaceholderNotice";
@@ -81,10 +80,7 @@ export default function Home() {
           />
         </div>
 
-        {/* 10. Registrations & Compliance */}
-        <ComplianceSection />
-
-        {/* 11. Contact */}
+        {/* 10. Contact */}
         <ContactSection />
       </main>
 
