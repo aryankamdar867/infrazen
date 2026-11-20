@@ -101,7 +101,7 @@ export default function HealthcareEPCSection() {
             <span className="dim-label" style={{ color: STEEL }}>/ Healthcare EPC</span>
           </div>
           <div style={{ height: 2, background: STEEL, width: "3rem", marginBottom: "1.25rem" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2rem", alignItems: "end" }}>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <h2
                 className="heading-expanded"
@@ -130,16 +130,7 @@ export default function HealthcareEPCSection() {
         </div>
 
         {/* 3 turnkey pillars */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: "1.5px",
-            background: "var(--border-color)",
-            border: "1.5px solid var(--border-color)",
-            marginBottom: "4rem",
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {siteConfig.healthcareEPC.pillars.map((pillar, idx) => {
             const Icon = pillarIcons[idx] || IconHospital;
             return (
@@ -239,13 +230,7 @@ export default function HealthcareEPCSection() {
             </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))",
-              gap: "1rem",
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {siteConfig.healthcareEPC.activities.map((activity, idx) => {
               const Icon = activityIcons[idx % activityIcons.length] || IconLayout;
               return (

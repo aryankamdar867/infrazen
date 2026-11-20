@@ -110,7 +110,7 @@ export default function MegaInfraSection() {
             </span>
           </div>
           <div className="orange-rule" style={{ marginBottom: "1.25rem" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2rem", alignItems: "end" }}>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <h2
                 className="heading-expanded"
@@ -139,15 +139,7 @@ export default function MegaInfraSection() {
         </div>
 
         {/* 2-column layout */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "3rem",
-            alignItems: "start",
-          }}
-          className="block lg:grid"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left: steps */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
             {/* Capability card */}
@@ -265,9 +257,8 @@ export default function MegaInfraSection() {
 
           {/* Right: Blueprint diagram — procedural SVG bridge drawing */}
           <div
+            className="static lg:sticky top-24 w-full"
             style={{
-              position: "sticky",
-              top: "6rem",
               background: "var(--bg-card)",
               border: "1px solid var(--border-color)",
               padding: "1.75rem",

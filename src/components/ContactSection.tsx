@@ -115,7 +115,7 @@ export default function ContactSection() {
             <span className="dim-label" style={{ color: STEEL }}>/ Contact</span>
           </div>
           <div className="orange-rule" style={{ marginBottom: "1.25rem" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2rem", alignItems: "end" }}>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <h2
                 className="heading-expanded"

@@ -85,7 +85,7 @@ export default function WhyChooseUsSection() {
             <span className="dim-label" style={{ color: STEEL }}>/ Why Infrazen</span>
           </div>
           <div className="orange-rule" style={{ marginBottom: "1.25rem" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2rem", alignItems: "end" }}>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <h2
                 className="heading-expanded"
@@ -114,16 +114,7 @@ export default function WhyChooseUsSection() {
         </div>
 
         {/* 3 capability cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: "1.5px",
-            background: "var(--border-color)",
-            border: "1.5px solid var(--border-color)",
-            marginBottom: "3.5rem",
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {siteConfig.whyChooseInfrazen.cards.map((card, idx) => {
             const Icon = cardIcons[idx] || IconShieldAlert;
             return (
@@ -213,18 +204,19 @@ export default function WhyChooseUsSection() {
 
         {/* Track record strip */}
         <div
-          style={{
-            background: "var(--bg-card)",
-            border: "1px solid var(--border-color)",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "1.5px",
-            overflow: "hidden",
-          }}
-          className="block sm:grid"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
           {/* Experience */}
-          <div style={{ padding: "2.5rem 2rem", background: "var(--bg-card)", display: "flex", alignItems: "center", gap: "1.5rem" }}>
+          <div
+            style={{
+              padding: "2rem 1.75rem",
+              background: "var(--bg-card)",
+              border: "1px solid var(--border-color)",
+              display: "flex",
+              alignItems: "center",
+              gap: "1.25rem",
+            }}
+          >
             <div
               style={{
                 width: 60,
@@ -272,11 +264,12 @@ export default function WhyChooseUsSection() {
           {/* Commitment */}
           <div
             style={{
-              padding: "2.5rem 2rem",
+              padding: "2rem 1.75rem",
               background: "var(--bg-alt)",
+              border: "1px solid var(--border-color)",
               display: "flex",
               alignItems: "center",
-              gap: "1.5rem",
+              gap: "1.25rem",
             }}
           >
             <div

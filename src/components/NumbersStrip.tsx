@@ -91,35 +91,17 @@ export default function NumbersStrip() {
         </div>
 
         {/* Stat columns */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "0",
-          }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
           {siteConfig.numbers.items.map((item, i) => (
             <div
               key={item.id}
-              style={{
-                padding: "2rem 1.75rem 2rem 0",
-                borderTop: "2px solid var(--accent-orange)",
-                borderRight: i < siteConfig.numbers.items.length - 1 ? "1px solid var(--border-color)" : "none",
-                paddingRight: i < siteConfig.numbers.items.length - 1 ? "1.75rem" : "0",
-                marginRight: i < siteConfig.numbers.items.length - 1 ? "1.75rem" : "0",
-              }}
+              className="pt-6 pb-6 lg:py-8 lg:pr-7 lg:mr-7 border-t-2 border-[var(--accent-orange)] lg:border-r border-[var(--border-color)] last:border-r-0 last:mr-0 last:pr-0"
             >
               <div className="dim-label" style={{ marginBottom: "0.75rem" }}>
                 Metric 0{i + 1}
               </div>
               <div
-                className="stat-number"
-                style={{
-                  fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-                  color: "var(--primary-navy)",
-                  fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                }}
+                className="stat-number text-4xl sm:text-5xl font-bold font-[var(--font-heading)] text-[var(--primary-navy)]"
               >
                 <Counter
                   end={item.number}
@@ -132,14 +114,14 @@ export default function NumbersStrip() {
                 style={{
                   fontFamily: "var(--font-heading)",
                   fontWeight: 700,
-                  fontSize: "0.9375rem",
+                  fontSize: "1rem",
                   color: "var(--primary-navy)",
                   margin: "0.5rem 0 0.375rem",
                 }}
               >
                 {item.label}
               </h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--text-body)", lineHeight: 1.55 }}>
+              <p style={{ fontSize: "0.8125rem", color: "var(--text-body)", lineHeight: 1.55 }}>
                 {item.sub}
               </p>
             </div>
@@ -148,29 +130,20 @@ export default function NumbersStrip() {
 
         {/* Growth strip */}
         <div
-          style={{
-            marginTop: "3rem",
-            paddingTop: "2rem",
-            borderTop: "1px solid var(--border-color)",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            gap: "1.5rem",
-          }}
+          className="mt-10 pt-6 border-t border-[var(--border-color)] flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6"
         >
-          <div className="dim-label" style={{ flexShrink: 0 }}>YoY Growth Trajectory</div>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+          <div className="dim-label flex-shrink-0">YoY Growth Trajectory</div>
+          <div className="flex items-center gap-3 flex-wrap">
             {[
               { label: "FY 24–25 Delivered", val: "₹12 Cr", accent: false },
               { label: "FY 25–26", val: "₹20 Cr", accent: true },
               { label: "Order Book", val: "₹100 Cr+", accent: false },
             ].map((s, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <div key={i} className="flex items-center gap-2">
                 <div
+                  className="py-1.5 px-3 rounded-[2px]"
                   style={{
-                    padding: "0.375rem 0.875rem",
                     border: s.accent ? "1px solid var(--secondary-steel)" : "1px solid var(--border-color)",
-                    borderRadius: "2px",
                     background: s.accent ? "#FFFFFF" : "rgba(255, 255, 255, 0.6)",
                   }}
                 >

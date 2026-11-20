@@ -36,33 +36,34 @@ export default function AboutSection() {
     <section
       id="about"
       style={{
-        padding: "5rem 1.5rem",
-        background: "rgba(247, 245, 240, 0.92)",
+        background: "rgba(247, 245, 240, 0.94)",
         borderTop: "1px solid var(--border-color)",
         position: "relative",
       }}
+      className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8"
     >
       <div style={{ maxWidth: "84rem", margin: "0 auto" }}>
-        {/* Header row */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", marginBottom: "4rem", alignItems: "end" }}>
+        {/* Header row: stacks on mobile/tablet, 2-cols on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 mb-12 lg:mb-16 items-start lg:items-end">
           <div>
             <div className="section-number">03 / Company Overview</div>
             <h2
               className="heading-expanded"
               style={{
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
                 color: "var(--heading)",
                 marginTop: "0.625rem",
+                lineHeight: 1.15,
               }}
             >
               Engineering the Nation's Next-Generation Assets.
             </h2>
           </div>
-          <div style={{ borderLeft: "1px solid var(--hairline)", paddingLeft: "2rem" }}>
-            <p style={{ fontSize: "0.9375rem", color: "var(--slate)", lineHeight: 1.7, opacity: 0.85 }}>
+          <div className="border-t lg:border-t-0 lg:border-l border-[var(--border-color)] pt-6 lg:pt-0 lg:pl-8">
+            <p style={{ fontSize: "0.9375rem", color: "var(--slate)", lineHeight: 1.7, opacity: 0.9 }}>
               {siteConfig.about.whoWeAre.description}
             </p>
-            <div style={{ marginTop: "1.5rem" }}>
+            <div style={{ marginTop: "1.25rem" }}>
               {siteConfig.about.headquartersPune.bullets.map((b, i) => (
                 <div
                   key={i}
@@ -71,13 +72,13 @@ export default function AboutSection() {
                     alignItems: "flex-start",
                     gap: "0.75rem",
                     padding: "0.5rem 0",
-                    borderBottom: "1px solid var(--hairline)",
+                    borderBottom: "1px solid var(--border-color)",
                     fontSize: "0.8125rem",
                     color: "var(--slate)",
                   }}
                 >
-                  <span style={{ color: "var(--violet)", marginTop: "2px", flexShrink: 0 }}>—</span>
-                  {b}
+                  <span style={{ color: "var(--secondary-steel)", marginTop: "2px", flexShrink: 0, fontWeight: 700 }}>—</span>
+                  <span>{b}</span>
                 </div>
               ))}
             </div>
@@ -93,15 +94,15 @@ export default function AboutSection() {
             background: "#FFFFFF",
             border: "1px solid var(--border-color)",
             borderRadius: "2px",
-            padding: "2.5rem",
             marginBottom: "2rem",
           }}
+          className="p-6 sm:p-10"
         >
           <div className="section-number" style={{ marginBottom: "1rem", color: "var(--primary-navy)" }}>Vision</div>
           <blockquote
             style={{
               fontFamily: "var(--font-heading)",
-              fontSize: "clamp(1.15rem, 2vw, 1.45rem)",
+              fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
               fontWeight: 600,
               color: "var(--primary-navy)",
               lineHeight: 1.5,
@@ -112,27 +113,14 @@ export default function AboutSection() {
             &ldquo;{siteConfig.about.vision.statement}&rdquo;
           </blockquote>
 
-          {/* 3 pillars */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "0",
-              marginTop: "2rem",
-              paddingTop: "2rem",
-              borderTop: "1px solid var(--border-color)",
-            }}
-          >
+          {/* 3 pillars: stacked on mobile, 3-cols on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 mt-8 pt-8 border-t border-[var(--border-color)]">
             {siteConfig.about.vision.pillars.map((pillar, i) => {
               const Icon = pillarIcons[i];
               return (
                 <div
                   key={i}
-                  style={{
-                    paddingRight: i < 2 ? "2rem" : "0",
-                    paddingLeft: i > 0 ? "2rem" : "0",
-                    borderLeft: i > 0 ? "1px solid var(--border-color)" : "none",
-                  }}
+                  className="border-t md:border-t-0 md:border-l first:border-t-0 md:first:border-l-0 border-[var(--border-color)] pt-5 md:pt-0 px-0 md:px-6"
                 >
                   <div style={{ color: "var(--secondary-steel)", marginBottom: "0.75rem" }}>
                     <Icon />
@@ -157,29 +145,21 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Mission cards */}
+        {/* Mission cards: 1 col on mobile, 3 cols on desktop */}
         <div>
-          <div className="section-number" style={{ marginBottom: "1.5rem", color: "var(--primary-navy)" }}>Mission</div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "1px",
-              background: "var(--border-color)",
-              border: "1px solid var(--border-color)",
-              borderRadius: "2px",
-              overflow: "hidden",
-            }}
-          >
+          <div className="section-number" style={{ marginBottom: "1rem", color: "var(--primary-navy)" }}>Mission</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {siteConfig.about.mission.cards.map((card) => (
               <div
                 key={card.tag}
                 style={{
                   background: "#FFFFFF",
-                  padding: "2rem",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "2px",
                 }}
+                className="p-6 sm:p-8"
               >
-                <div className="dim-label" style={{ marginBottom: "1rem", color: "var(--secondary-steel)" }}>
+                <div className="dim-label" style={{ marginBottom: "0.75rem", color: "var(--secondary-steel)" }}>
                   {card.tag}
                 </div>
                 <h3

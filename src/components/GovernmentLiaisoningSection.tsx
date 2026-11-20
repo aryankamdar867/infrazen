@@ -101,7 +101,7 @@ export default function GovernmentLiaisoningSection() {
             <span className="dim-label" style={{ color: STEEL }}>/ Government Liaisoning</span>
           </div>
           <div style={{ height: 2, background: ORANGE, width: "3rem", marginBottom: "1.25rem" }} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "2rem", alignItems: "end" }}>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <h2
                 className="heading-expanded"
@@ -130,16 +130,7 @@ export default function GovernmentLiaisoningSection() {
         </div>
 
         {/* 3 government liaisoning service cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(270px, 1fr))",
-            gap: "1.5px",
-            background: "var(--border-color)",
-            border: "1.5px solid var(--border-color)",
-            marginBottom: "3.5rem",
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {siteConfig.governmentLiaisoning.services.map((item, idx) => {
             const Icon = liaisonIcons[idx] || IconFileCheck;
             return (
@@ -260,13 +251,7 @@ export default function GovernmentLiaisoningSection() {
             </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-              gap: "1rem",
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {siteConfig.advisoryServices.items.map((service, idx) => {
               const Icon = advisoryIcons[idx % advisoryIcons.length] || IconLineChart;
               return (

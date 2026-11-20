@@ -119,11 +119,12 @@ export default function HeroSection() {
           <h1
             className="heading-expanded"
             style={{
-              fontSize: "clamp(2.125rem, 6vw, 7.5rem)",
+              fontSize: "clamp(2rem, 5.5vw, 4.5rem)",
               color: "var(--primary-navy)",
               marginBottom: "1.5rem",
-              maxWidth: "18ch",
+              maxWidth: "22ch",
               fontWeight: 700,
+              lineHeight: 1.1,
             }}
           >
             Building the Future with{" "}
@@ -142,7 +143,7 @@ export default function HeroSection() {
           <p
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "clamp(1rem, 1.5vw, 1.1875rem)",
+              fontSize: "clamp(0.9375rem, 1.5vw, 1.125rem)",
               color: "var(--text-body)",
               lineHeight: 1.7,
               maxWidth: "38ch",
@@ -153,15 +154,8 @@ export default function HeroSection() {
             {siteConfig.hero.subheadline}
           </p>
 
-          {/* CTA row — left-anchored, asymmetric */}
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              gap: "1.25rem",
-            }}
-          >
+          {/* CTA row — responsive flex wrap */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-5">
             <a href={siteConfig.hero.primaryCta.href} className="btn-navy">
               {siteConfig.hero.primaryCta.label}
               <IconArrow />
@@ -172,14 +166,7 @@ export default function HeroSection() {
             </a>
 
             {/* Dimension callout line with Safety Orange rule */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-                marginLeft: "1rem",
-              }}
-            >
+            <div className="flex items-center gap-3 w-full sm:w-auto pt-2 sm:pt-0 sm:ml-4">
               <div style={{ height: 2, width: "3rem", background: "var(--accent-orange)" }} />
               <div>
                 <div className="dim-label">Est. order book</div>
