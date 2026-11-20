@@ -366,7 +366,7 @@ export default function ContactSection() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 98220 00000"
+                        placeholder="+91 91520 00025"
                         style={{
                           width: "100%",
                           padding: "0.75rem 1rem",

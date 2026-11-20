@@ -6,14 +6,6 @@
  * from verified company documentation. Edit this file to update site content or toggle fields.
  */
 
-export interface RegistrationItem {
-  id: string;
-  label: string;
-  value: string;
-  notes?: string;
-  visible: boolean;
-}
-
 export interface SiteConfig {
   company: {
     name: string;
@@ -203,13 +195,6 @@ export interface SiteConfig {
       };
     };
   };
-  registrations: {
-    sectionId: string;
-    title: string;
-    badge: string;
-    complianceNotice: string;
-    items: RegistrationItem[];
-  };
   contact: {
     sectionId: string;
     title: string;
@@ -237,10 +222,10 @@ export const siteConfig: SiteConfig = {
       full: "Office No: A 95, Ground Floor, Patil Plaza, Mitra Mandal Chowk, Pune – 411009",
     },
     contact: {
-      phoneDisplay: "+91 20 2553 0000",
-      phoneRaw: "+912025530000",
-      whatsappDisplay: "+91 98220 00000",
-      whatsappNumber: "919822000000",
+      phoneDisplay: "+91 91520 00025",
+      phoneRaw: "+919152000025",
+      whatsappDisplay: "+91 91520 00025",
+      whatsappNumber: "919152000025",
       whatsappMessage: "Hello Infrazen Mega Projects, I would like to enquire regarding an infrastructure / EPC project.",
       email: "office@infrazenprojects.com",
       formspreeEndpoint: "https://formspree.io/f/xbjnerkp",
@@ -715,58 +700,6 @@ export const siteConfig: SiteConfig = {
         desc: "Strong network and relationships built on delivery, trust, and transparency.",
       },
     },
-  },
-
-  registrations: {
-    sectionId: "compliance",
-    title: "Registrations & Compliance",
-    badge: "FULLY COMPLIANT & REGISTERED ENTITY",
-    complianceNotice:
-      "All registrations are current and in good standing. Infrazen operates with full statutory compliance across all applicable regulatory frameworks in India.",
-    items: [
-      {
-        id: "cin",
-        label: "Corporate Identity Number (CIN)",
-        value: "U41001PN2024PTC233435",
-        notes: "Registered with Ministry of Corporate Affairs (RoC Pune)",
-        visible: true,
-      },
-      {
-        id: "pan",
-        label: "Permanent Account Number (PAN)",
-        value: "AAHCI8006L",
-        notes: "Income Tax Department of India",
-        visible: true,
-      },
-      {
-        id: "tan",
-        label: "Tax Deduction Account Number (TAN)",
-        value: "PNEI12999A",
-        notes: "Tax Withholding Compliance (Pune)",
-        visible: true,
-      },
-      {
-        id: "gstin",
-        label: "Goods & Services Tax Identification (GSTIN)",
-        value: "27AAHCI8006L1ZA",
-        notes: "State of Maharashtra",
-        visible: true,
-      },
-      {
-        id: "esic",
-        label: "Employees' State Insurance Corporation (ESIC)",
-        value: "33001418900000999",
-        notes: "Worker welfare statutory registration",
-        visible: true,
-      },
-      {
-        id: "epfo",
-        label: "Employees' Provident Fund Organisation (EPFO)",
-        value: "PUPUN3357065000",
-        notes: "Pune Regional Provident Fund Office",
-        visible: true,
-      },
-    ],
   },
 
   contact: {
